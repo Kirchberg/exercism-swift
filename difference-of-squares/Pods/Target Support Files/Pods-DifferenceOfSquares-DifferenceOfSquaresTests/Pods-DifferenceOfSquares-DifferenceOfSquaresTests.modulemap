@@ -1,0 +1,6 @@
+framework module Pods_DifferenceOfSquares_DifferenceOfSquaresTests {
+  umbrella header "Pods-DifferenceOfSquares-DifferenceOfSquaresTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
