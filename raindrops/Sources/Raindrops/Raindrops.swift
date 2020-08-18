@@ -4,13 +4,13 @@ class Raindrops {
     
     lazy var sounds: String = {
         var resultStr = String()
-        if digit % 3 == 0 {
+        if digit.isMultiple(of: 3) {
             resultStr += "Pling"
         }
-        if digit % 5 == 0 {
+        if digit.isMultiple(of: 5) {
             resultStr += "Plang"
         }
-        if digit % 7 == 0 {
+        if digit.isMultiple(of: 7) {
             resultStr += "Plong"
         }
         return (!resultStr.isEmpty) ? resultStr : "\(digit)"
