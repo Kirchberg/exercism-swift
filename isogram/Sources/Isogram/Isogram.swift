@@ -1,17 +1,15 @@
 struct Isogram {
-    private static let punctuation: Set<Character> = [" ", "-"]
     static func isIsogram(_ word: String) -> Bool {
         var isIsogram: Bool = true
         var setOfUniqueCharacters: Set<Character> = []
         var wordWithoutPunctuation = word.lowercased()
-        wordWithoutPunctuation.removeAll(where: { punctuation.contains($0) })
+        wordWithoutPunctuation.removeAll(where: { [" ", "-"].contains($0) })
         for char in wordWithoutPunctuation {
-            if !setOfUniqueCharacters.contains(char) {
-                setOfUniqueCharacters.insert(char)
-            } else {
+            if !setOfUniqueCharacters.allSatisfy({$0 != char}) {
                 isIsogram = false
                 break
             }
+            setOfUniqueCharacters.insert(char)
         }
         return isIsogram
     }
