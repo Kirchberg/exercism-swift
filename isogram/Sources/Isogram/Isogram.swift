@@ -3,6 +3,6 @@ struct Isogram {
         var setOfUniqueCharacters: Set<Character> = []
         var wordWithoutPunctuation = word.lowercased()
         wordWithoutPunctuation.removeAll(where: { [" ", "-"].contains($0) })
-        return wordWithoutPunctuation.allSatisfy({setOfUniqueCharacters.insert($0).inserted})
+        return wordWithoutPunctuation.lazy.allSatisfy({setOfUniqueCharacters.insert($0).inserted})
     }
 }

@@ -1,15 +1,10 @@
 struct ETL {
     
     static func transform(_ listOfLettersPerScore: [Int : [String]]) -> [String : Int] {
-        var listOfScoresPerLetter = [String : Int]()
-        
-        for (key, value) in listOfLettersPerScore {
-            for char in value {
-                listOfScoresPerLetter[char] = key
+        return Dictionary(uniqueKeysWithValues: listOfLettersPerScore.flatMap { digit, letters in
+            letters.map {
+                ($0.lowercased(), digit)
             }
-        }
-        let tupleArray = listOfScoresPerLetter.map { ($0.lowercased(), $1) }
-        listOfScoresPerLetter = Dictionary(uniqueKeysWithValues: tupleArray)
-        return listOfScoresPerLetter
+        })
     }
 }
