@@ -14,10 +14,10 @@ extension String {
 extension PhoneNumber: CustomStringConvertible{
     var description: String {
         var arrayString = Array(number)
-        arrayString.insert("(", at: arrayString.startIndex)
-        arrayString.insert(")", at: arrayString.index(arrayString.startIndex, offsetBy: 4))
-        arrayString.insert(" ", at: arrayString.index(arrayString.startIndex, offsetBy: 5))
-        arrayString.insert("-", at: arrayString.index(arrayString.startIndex, offsetBy: 9))
+        arrayString.insert("(", at: 0)
+        arrayString.insert(")", at: 4)
+        arrayString.insert(" ", at: 5)
+        arrayString.insert("-", at: 9)
         return String(arrayString)
     }
 }
