@@ -4,21 +4,11 @@ extension String {
             self.removeFirst()
         }
     }
-    subscript(bounds: CountableClosedRange<Int>) -> String {
-        let startIndex = self.index(self.startIndex, offsetBy: bounds.lowerBound)
-        let endIndex = self.index(self.startIndex, offsetBy: bounds.upperBound)
-        return String(self[startIndex...endIndex])
-    }
 }
 
 extension PhoneNumber: CustomStringConvertible{
     var description: String {
-        var arrayString = Array(number)
-        arrayString.insert("(", at: 0)
-        arrayString.insert(")", at: 4)
-        arrayString.insert(" ", at: 5)
-        arrayString.insert("-", at: 9)
-        return String(arrayString)
+        return "(\(number.prefix(3))) \(number.dropLast(4).suffix(3))-\(number.suffix(4))"
     }
 }
 
@@ -27,14 +17,11 @@ class PhoneNumber{
     let areaCode: String
     init(_ startingNumber: String) {
         var sourceNumber = startingNumber
+        
         sourceNumber.removeCountryCode()
         var telephoneNumber = Array(sourceNumber)
-        areaCode = sourceNumber[0...2]
+        areaCode = String(sourceNumber.prefix(3))
         telephoneNumber.removeAll(where: {["-", " ", "(", ")", "."].contains($0)})
-        if telephoneNumber.count <= 9 || telephoneNumber.count >= 11 {
-            number = String(repeating: "0", count: 10)
-        } else {
-            number = String(telephoneNumber)
-        }
+        number = (telephoneNumber.count <= 9 || telephoneNumber.count >= 11) ? String(repeating: "0", count: 10) : String(telephoneNumber)
     }
 }
