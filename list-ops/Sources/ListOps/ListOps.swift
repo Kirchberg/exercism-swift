@@ -1,46 +1,43 @@
 struct ListOps {
+    static func append<T>(_ firstArray: [T], _ secondArray: [T]) -> [T] {
+        return firstArray + secondArray
+    }
     
-    static func append(_ numbersCollection: [Int]...) -> [Int] {
-        var resultArray = [Int]()
-        for numberArray in numbersCollection {
-            resultArray += numberArray
+    static func concat<T>(_ arrays: [T]...) -> [T] {
+        var newArray = [T]()
+        for singleArray in arrays {
+            newArray += singleArray
         }
-        return resultArray
+        return newArray
     }
     
-    static func concat(_ numbersCollection: [Int]...) -> [Int] {
-        var resultArray = [Int]()
-        for numberArray in numbersCollection {
-            resultArray += numberArray
+    static func filter<T>(_ sourceArray: [T], _ completion: (T) -> Bool) -> [T] {
+        var newArray = [T]()
+        for elem in sourceArray {
+            if completion(elem) {
+                newArray += [elem]
+            }
         }
-        return resultArray
+        return newArray
     }
     
-    //Stuck here
-    static func filter(_ numbersArray: [Int], closure: () -> ()) -> [Int] {
-        return [1]
-    }
-    
-    static func length(_ numbersArray: [Int]) -> Int {
+    static func length<T>(_ sourceArray: [T]) -> Int {
         var count: Int = 0
-        for _ in numbersArray {
+        for _ in sourceArray {
             count += 1
         }
         return count
     }
     
-    static func reverse(_ numbersArray: [Int]) -> [Int] {
-        var length: Int = ListOps.length(numbersArray)
-        guard !(length == 0) else {
-            return []
+    static func map<T>(_ sourceArray: [T], _ completion: (T) -> T) -> [T] {
+        var newArray = [T]()
+        for elem in sourceArray {
+            newArray += [completion(elem)]
         }
-        var resultArray = (Array(repeating: 0, count: length))
-        var count: Int = 0
-        while length != -1 {
-            resultArray[count] = numbersArray[length]
-            length -= 1
-            count += 1
-        }
-        return resultArray
+        return newArray
+    }
+    
+    static func foldLeft(_ sourceArray: [Int], accumulated: Int, combine:  ) -> Int {
+        return 0 
     }
 }
